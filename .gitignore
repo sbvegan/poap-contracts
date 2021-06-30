@@ -12,3 +12,7 @@ node_modules
 
 # IDEs
 .idea/
+
+
+# Local scripts
+.local_scripts/

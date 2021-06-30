@@ -96,8 +96,38 @@ module.exports = {
         );
       },
       gas: 5000000,
-      gasPrice: 5e9,
+      gasPrice: 50e9,
       network_id: 97,
+    },
+    mumbai: {
+      provider: function() {
+        if (!process.env.POAP_MUMBAI_TEST_PK) {
+          console.error('POAP_MUMBAI_TEST_PK env variable is needed');
+          process.abort();
+        }
+        return new HDWalletProvider(
+          process.env.POAP_MUMBAI_TEST_PK,
+          'https://rpc-mumbai.maticvigil.com'
+        );
+      },
+      gas: 5000000,
+      gasPrice: 1e9,
+      network_id: 80001,
+    },
+    polygon: {
+      provider: function() {
+        if (!process.env.POAP_POLYGON_PK) {
+          console.error('POAP_POLYGON_PK env variable is needed');
+          process.abort();
+        }
+        return new HDWalletProvider(
+          process.env.POAP_POLYGON_PK,
+          'https://rpc-mainnet.maticvigil.com'
+        );
+      },
+      gas: 5000000,
+      gasPrice: 1e9,
+      network_id: 137,
     },
   },
 };

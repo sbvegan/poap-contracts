@@ -17,9 +17,8 @@ import "./PoapPausable.sol";
 // - Pause contract (only admin)
 // - ERC721 full interface (base, metadata, enumerable)
 
-contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausable {
+contract PolyPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausable {
     event EventToken(uint256 indexed eventId, uint256 tokenId);
-    event BurntToken(uint256 indexed tokenId, address owner);
 
     // Token name
     string private _name;
@@ -114,35 +113,16 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
     }
 
     /**
-     * @dev Function to mint tokens
+     * @dev Function to mint tokens with a specific id
      * @param eventId EventId for the new token
+     * @param tokenId TokenId for the new token
      * @param to The address that will receive the minted tokens.
      * @return A boolean that indicates if the operation was successful.
      */
-    function mintEventToManyUsers(uint256 eventId, address[] memory to)
+    function mintToken(uint256 eventId, uint256 tokenId, address to)
     public whenNotPaused onlyEventMinter(eventId) returns (bool)
     {
-        for (uint256 i = 0; i < to.length; ++i) {
-            _mintToken(eventId, lastId + 1 + i, to[i]);
-        }
-        lastId += to.length;
-        return true;
-    }
-
-    /**
-     * @dev Function to mint tokens
-     * @param eventIds EventIds to assing to user
-     * @param to The address that will receive the minted tokens.
-     * @return A boolean that indicates if the operation was successful.
-     */
-    function mintUserToManyEvents(uint256[] memory eventIds, address to)
-    public whenNotPaused onlyAdmin() returns (bool)
-    {
-        for (uint256 i = 0; i < eventIds.length; ++i) {
-            _mintToken(eventIds[i], lastId + 1 + i, to);
-        }
-        lastId += eventIds.length;
-        return true;
+        return _mintToken(eventId, tokenId, to);
     }
 
     /**
@@ -260,23 +240,4 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
         return string(babcde);
     }
 
-    /**
-     * @dev Function to mint and burn token in same tx
-     * @param eventId EventId for the new token
-     * @param to The address that will receive the minted tokens.
-     * @return A boolean that indicates if the operation was successful.
-     */
-    function mintBurntToken(uint256 eventId, address to)
-    public whenNotPaused onlyEventMinter(eventId) returns (bool)
-    {
-        lastId += 1;
-        _mintToken(eventId, lastId, to);
-        _burn(lastId);
-        emit BurntToken(lastId, to);
-        return true;
-    }
-
-    function removeAdmin(address account) public onlyAdmin {
-        _removeAdmin(account);
-    }
 }
