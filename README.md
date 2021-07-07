@@ -69,6 +69,7 @@ To create an instance we do:
 #### Production ####
 * Mainnet: [0x22c1f6050e56d2876009903609a2cc3fef83b415](https://etherscan.io/address/0x22c1f6050e56d2876009903609a2cc3fef83b415)
 * xDAI: [0x22c1f6050e56d2876009903609a2cc3fef83b415](https://blockscout.com/poa/xdai/address/0x22c1f6050e56d2876009903609a2cc3fef83b415/transactions)
+* Polygon: [0x22c1f6050e56d2876009903609a2cc3fef83b415](https://polygonscan.com/address/0x22c1f6050e56d2876009903609a2cc3fef83b415)
 
 #### Development ####
 * Rinkeby: []()

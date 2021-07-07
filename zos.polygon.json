@@ -1,0 +1,314 @@
+{
+  "contracts": {
+    "PolyPoap": {
+      "address": "0x0211621fB78c85EE44b12D2F04e2e2f16334a9fE",
+      "constructorCode": "608060405234801561001057600080fd5b5061417c806100206000396000f3fe",
+      "bodyBytecodeHash": "41e84e726ea6a1e2b87da2dc1d5dac448f95de33651b7d1ab850b4cf5aae7bda",
+      "localBytecodeHash": "c8e38675da94c65056c61ef6e7fad54994c155396c85cdfbfe99c77b82c29ede",
+      "deployedBytecodeHash": "c8e38675da94c65056c61ef6e7fad54994c155396c85cdfbfe99c77b82c29ede",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_mapping<t_bool>": {
+          "id": "t_mapping<t_bool>",
+          "valueType": "t_bool",
+          "label": "mapping(key => bool)",
+          "kind": "mapping"
+        },
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_mapping<t_address>": {
+          "id": "t_mapping<t_address>",
+          "valueType": "t_address",
+          "label": "mapping(key => address)",
+          "kind": "mapping"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        },
+        "t_array:dyn<t_uint256>": {
+          "id": "t_array:dyn<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "dyn",
+          "kind": "array",
+          "label": "uint256[]"
+        },
+        "t_mapping<t_array:dyn<t_uint256>>": {
+          "id": "t_mapping<t_array:dyn<t_uint256>>",
+          "valueType": "t_array:dyn<t_uint256>",
+          "label": "mapping(key => uint256[])",
+          "kind": "mapping"
+        },
+        "t_struct<Roles.Role>": {
+          "id": "t_struct<Roles.Role>",
+          "kind": "struct",
+          "label": "Roles.Role",
+          "members": [
+            {
+              "label": "bearer",
+              "astId": 2570,
+              "type": "t_mapping<t_bool>",
+              "src": "150:32:5"
+            }
+          ]
+        },
+        "t_mapping<t_struct<Roles.Role>>": {
+          "id": "t_mapping<t_struct<Roles.Role>>",
+          "valueType": "t_struct<Roles.Role>",
+          "label": "mapping(key => Roles.Role)",
+          "kind": "mapping"
+        },
+        "t_string": {
+          "id": "t_string",
+          "kind": "elementary",
+          "label": "string"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "zos-lib/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 4000,
+          "type": "t_bool",
+          "src": "757:24:16"
+        },
+        {
+          "contract": "Initializable",
+          "path": "zos-lib/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 4002,
+          "type": "t_bool",
+          "src": "876:25:16"
+        },
+        {
+          "contract": "Initializable",
+          "path": "zos-lib/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 4051,
+          "type": "t_array:50<t_uint256>",
+          "src": "1891:29:16"
+        },
+        {
+          "contract": "ERC165",
+          "path": "openzeppelin-eth/contracts/introspection/ERC165.sol",
+          "label": "_supportedInterfaces",
+          "astId": 2673,
+          "type": "t_mapping<t_bool>",
+          "src": "497:52:6"
+        },
+        {
+          "contract": "ERC165",
+          "path": "openzeppelin-eth/contracts/introspection/ERC165.sol",
+          "label": "______gap",
+          "astId": 2717,
+          "type": "t_array:50<t_uint256>",
+          "src": "1230:29:6"
+        },
+        {
+          "contract": "ERC721",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721.sol",
+          "label": "_tokenOwner",
+          "astId": 2883,
+          "type": "t_mapping<t_address>",
+          "src": "774:48:9"
+        },
+        {
+          "contract": "ERC721",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721.sol",
+          "label": "_tokenApprovals",
+          "astId": 2887,
+          "type": "t_mapping<t_address>",
+          "src": "878:52:9"
+        },
+        {
+          "contract": "ERC721",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721.sol",
+          "label": "_ownedTokensCount",
+          "astId": 2891,
+          "type": "t_mapping<t_uint256>",
+          "src": "988:54:9"
+        },
+        {
+          "contract": "ERC721",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721.sol",
+          "label": "_operatorApprovals",
+          "astId": 2897,
+          "type": "t_mapping<t_bool>",
+          "src": "1097:73:9"
+        },
+        {
+          "contract": "ERC721",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721.sol",
+          "label": "______gap",
+          "astId": 3438,
+          "type": "t_array:50<t_uint256>",
+          "src": "11668:29:9"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721Enumerable.sol",
+          "label": "_ownedTokens",
+          "astId": 3458,
+          "type": "t_mapping<t_array:dyn<t_uint256>>",
+          "src": "467:50:10"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721Enumerable.sol",
+          "label": "_ownedTokensIndex",
+          "astId": 3462,
+          "type": "t_mapping<t_uint256>",
+          "src": "587:53:10"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721Enumerable.sol",
+          "label": "_allTokens",
+          "astId": 3465,
+          "type": "t_array:dyn<t_uint256>",
+          "src": "701:28:10"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721Enumerable.sol",
+          "label": "_allTokensIndex",
+          "astId": 3469,
+          "type": "t_mapping<t_uint256>",
+          "src": "800:51:10"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "openzeppelin-eth/contracts/token/ERC721/ERC721Enumerable.sol",
+          "label": "______gap",
+          "astId": 3798,
+          "type": "t_array:50<t_uint256>",
+          "src": "8814:29:10"
+        },
+        {
+          "contract": "PoapRoles",
+          "path": "contracts/PoapRoles.sol",
+          "label": "_admins",
+          "astId": 878,
+          "type": "t_struct<Roles.Role>",
+          "src": "456:26:2"
+        },
+        {
+          "contract": "PoapRoles",
+          "path": "contracts/PoapRoles.sol",
+          "label": "_minters",
+          "astId": 882,
+          "type": "t_mapping<t_struct<Roles.Role>>",
+          "src": "488:47:2"
+        },
+        {
+          "contract": "PoapRoles",
+          "path": "contracts/PoapRoles.sol",
+          "label": "______gap",
+          "astId": 1099,
+          "type": "t_array:50<t_uint256>",
+          "src": "2359:29:2"
+        },
+        {
+          "contract": "PoapPausable",
+          "path": "contracts/PoapPausable.sol",
+          "label": "_paused",
+          "astId": 773,
+          "type": "t_bool",
+          "src": "340:20:1"
+        },
+        {
+          "contract": "PoapPausable",
+          "path": "contracts/PoapPausable.sol",
+          "label": "______gap",
+          "astId": 846,
+          "type": "t_array:50<t_uint256>",
+          "src": "1390:29:1"
+        },
+        {
+          "contract": "PolyPoap",
+          "path": "contracts/PolyPoap.sol",
+          "label": "_name",
+          "astId": 1126,
+          "type": "t_string",
+          "src": "731:20:3"
+        },
+        {
+          "contract": "PolyPoap",
+          "path": "contracts/PolyPoap.sol",
+          "label": "_symbol",
+          "astId": 1128,
+          "type": "t_string",
+          "src": "778:22:3"
+        },
+        {
+          "contract": "PolyPoap",
+          "path": "contracts/PolyPoap.sol",
+          "label": "_baseURI",
+          "astId": 1130,
+          "type": "t_string",
+          "src": "829:23:3"
+        },
+        {
+          "contract": "PolyPoap",
+          "path": "contracts/PolyPoap.sol",
+          "label": "lastId",
+          "astId": 1132,
+          "type": "t_uint256",
+          "src": "906:21:3"
+        },
+        {
+          "contract": "PolyPoap",
+          "path": "contracts/PolyPoap.sol",
+          "label": "_tokenEvent",
+          "astId": 1136,
+          "type": "t_mapping<t_uint256>",
+          "src": "964:47:3"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    }
+  },
+  "solidityLibs": {},
+  "proxies": {
+    "polypoap/PolyPoap": [
+      {
+        "address": "0x22C1f6050E56d2876009903609a2cC3fEf83B415",
+        "version": "0.1.0",
+        "implementation": "0x0211621fB78c85EE44b12D2F04e2e2f16334a9fE"
+      }
+    ]
+  },
+  "zosversion": "2.2",
+  "version": "0.1.0",
+  "proxyAdmin": {
+    "address": "0xDD3C426fA842F890BCb793DA6ccD749Edb09c44B"
+  }
+}

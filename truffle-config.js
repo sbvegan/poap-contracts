@@ -1,4 +1,4 @@
-const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
   networks: {
@@ -15,10 +15,11 @@ module.exports = {
           console.error('POAP_ROPSTEN_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_ROPSTEN_PK,
-          'https://ropsten.infura.io/v3/cf7a7eed37254ec4b95670607e76a917'
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_ROPSTEN_PK,],
+          providerOrUrl: 'https://ropsten.infura.io/v3/cf7a7eed37254ec4b95670607e76a917',
+          chainId: 3
+        });
       },
       gas: 5000000,
       gasPrice: 5e9,
@@ -30,14 +31,15 @@ module.exports = {
           console.error('POAP_KOVAN_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_ROPSTEN_PK,
-          'https://kovan.infura.io/v3/cf7a7eed37254ec4b95670607e76a917'
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_ROPSTEN_PK,],
+          providerOrUrl: 'https://kovan.infura.io/v3/cf7a7eed37254ec4b95670607e76a917',
+          chainId: 42
+        });
       },
       gas: 5000000,
       gasPrice: 5e9,
-      network_id: 3,
+      network_id: 42,
     },
     sokol: {
       provider: function() {
@@ -45,10 +47,11 @@ module.exports = {
           console.error('POAP_SOKOL_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_SOKOL_PK,
-          "https://sokol.poa.network"
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_SOKOL_PK,],
+          providerOrUrl: "https://sokol.poa.network",
+          chainId: 77
+        });
       },
       gas: 5000000,
       gasPrice: 5e9,
@@ -60,10 +63,11 @@ module.exports = {
           console.error('POAP_XDAI_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_XDAI_PK,
-          "https://dai.poa.network"
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_XDAI_PK,],
+          providerOrUrl: "https://rpc.xdaichain.com",
+          chainId: 100
+        });
       },
       gas: 5000000,
       gasPrice: 5e9,
@@ -75,29 +79,15 @@ module.exports = {
           console.error('POAP_MAIN_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_MAIN_PK,
-          'https://mainnet.infura.io/v3/cf7a7eed37254ec4b95670607e76a917'
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_MAIN_PK,],
+          providerOrUrl: 'https://mainnet.infura.io/v3/cf7a7eed37254ec4b95670607e76a917',
+          chainId: 1
+        });
       },
       gas: 5000000,
       gasPrice: 5e9, // 5 gwei (check https://ethgasstation.info/)
       network_id: 1,
-    },
-    binancetestnet: {
-      provider: function() {
-        if (!process.env.POAP_BINANCE_TEST_PK) {
-          console.error('POAP_BINANCE_TEST_PK env variable is needed');
-          process.abort();
-        }
-        return new HDWalletProvider(
-          process.env.POAP_BINANCE_TEST_PK,
-          'https://data-seed-prebsc-1-s1.binance.org:8545'
-        );
-      },
-      gas: 5000000,
-      gasPrice: 50e9,
-      network_id: 97,
     },
     mumbai: {
       provider: function() {
@@ -105,10 +95,11 @@ module.exports = {
           console.error('POAP_MUMBAI_TEST_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_MUMBAI_TEST_PK,
-          'https://rpc-mumbai.maticvigil.com'
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_MUMBAI_TEST_PK,],
+          providerOrUrl: 'https://rpc-mumbai.maticvigil.com',
+          chainId: 80001
+        });
       },
       gas: 5000000,
       gasPrice: 1e9,
@@ -120,13 +111,14 @@ module.exports = {
           console.error('POAP_POLYGON_PK env variable is needed');
           process.abort();
         }
-        return new HDWalletProvider(
-          process.env.POAP_POLYGON_PK,
-          'https://rpc-mainnet.maticvigil.com'
-        );
+        return new HDWalletProvider({
+          privateKeys: [process.env.POAP_POLYGON_PK,],
+          providerOrUrl: 'https://rpc-mainnet.matic.network',
+          chainId: 137
+        });
       },
       gas: 5000000,
-      gasPrice: 1e9,
+      gasPrice: 9e9,
       network_id: 137,
     },
   },

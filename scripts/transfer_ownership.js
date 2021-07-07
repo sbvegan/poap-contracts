@@ -86,7 +86,7 @@ const ProxyAdminABI = [{
   "type": "event"
 }];
 
-const provider = new ethers.providers.JsonRpcProvider();
+const provider = new ethers.providers.JsonRpcProvider('');
 const proxyAdminAddress = '0xDD3C426fA842F890BCb793DA6ccD749Edb09c44B';
 
 const wallet = new ethers.Wallet('',  provider);
@@ -95,7 +95,7 @@ const newProxyAdmin = '0xa7c257324B69406964622cDD981dB832D6370082'; // New
 const contract = new ethers.Contract(proxyAdminAddress, ProxyAdminABI, wallet);
 
 const main = async () => {
-  console.log(`Transfering ownership!`);
+  console.log(`Transferring ownership!`);
 
   const currentOwner = await contract.functions.owner();
   console.log(`Current owner: ${currentOwner}`);

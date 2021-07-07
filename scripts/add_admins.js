@@ -1,5 +1,5 @@
 const ethers = require('ethers');
-const artifact = require('./build/contracts/Poap.json');
+const artifact = require('../build/contracts/Poap.json');
 
 const provider = new ethers.providers.JsonRpcProvider('');
 const wallet = new ethers.Wallet('',  provider);
@@ -35,7 +35,9 @@ async function addAdmin(addressList) {
       if (!isAdmin) {
         const tx = await contract.functions.addAdmin(address, {gasPrice: 10000000000, gasLimit: 750000});
         await tx.wait();
-        console.log(address, tx);
+        console.log(`${address} added as admin`);
+      } else {
+        console.log(`${address} is admin already`)
       }
     } catch (e) {
       console.log('Error ' + address);

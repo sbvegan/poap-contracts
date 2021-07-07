@@ -1,5 +1,5 @@
 const ethers = require('ethers');
-const artifact = require('./build/contracts/Poap.json');
+const artifact = require('../build/contracts/Poap.json');
 
 const provider = new ethers.providers.JsonRpcProvider('');
 const wallet = new ethers.Wallet('',  provider);
@@ -10,7 +10,7 @@ async function renounceAdmin() {
   if (isAdmin) {
     const tx = await contract.functions.renounceAdmin({gasPrice: 10000000000, gasLimit: 750000});
     await tx.wait();
-    console.log('renounce address ', wallet, ' - ', tx.hash);
+    console.log('renounce address ', wallet.address, ' - ', tx.hash);
   }
 }
 

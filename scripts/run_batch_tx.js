@@ -11,6 +11,7 @@ const main = async () => {
       gasLimit: 1000000,
       gasPrice: 1e9,
       to: wallet.address,
+      nonce: i + initialCount,
       value: ethers.utils.parseUnits('0', 'ether').toHexString()
     });
     await tx.wait();
