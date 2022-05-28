@@ -34,11 +34,18 @@ contract PoapRoles is Initializable {
         return _admins.has(account);
     }
 
-    function isEventMinter(uint256 eventId, address account) public view returns (bool) {
+    function isEventMinter(uint256 eventId, address account)
+        public
+        view
+        returns (bool)
+    {
         return isAdmin(account) || _minters[eventId].has(account);
     }
 
-    function addEventMinter(uint256 eventId, address account) public onlyEventMinter(eventId) {
+    function addEventMinter(uint256 eventId, address account)
+        public
+        onlyEventMinter(eventId)
+    {
         _addEventMinter(eventId, account);
     }
 
@@ -54,7 +61,10 @@ contract PoapRoles is Initializable {
         _removeAdmin(msg.sender);
     }
 
-    function removeEventMinter(uint256 eventId, address account) public onlyAdmin {
+    function removeEventMinter(uint256 eventId, address account)
+        public
+        onlyAdmin
+    {
         _removeEventMinter(eventId, account);
     }
 

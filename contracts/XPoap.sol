@@ -7,7 +7,6 @@ import "openzeppelin-eth/contracts/token/ERC721/IERC721Metadata.sol";
 import "./PoapRoles.sol";
 import "./PoapPausable.sol";
 
-
 // Desired Features
 // - Add Event
 // - Add Event Organizer
@@ -17,7 +16,13 @@ import "./PoapPausable.sol";
 // - Pause contract (only admin)
 // - ERC721 full interface (base, metadata, enumerable)
 
-contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausable {
+contract XPoap is
+    Initializable,
+    ERC721,
+    ERC721Enumerable,
+    PoapRoles,
+    PoapPausable
+{
     event EventToken(uint256 indexed eventId, uint256 tokenId);
 
     // Token name
@@ -34,7 +39,6 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
 
     // EventId for each token
     mapping(uint256 => uint256) private _tokenEvent;
-
 
     bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
 
@@ -64,7 +68,11 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @param index uint256 representing the index to be accessed of the requested tokens list
      * @return uint256 token ID at the given index of the tokens list owned by the requested address
      */
-    function tokenDetailsOfOwnerByIndex(address owner, uint256 index) public view returns (uint256 tokenId, uint256 eventId) {
+    function tokenDetailsOfOwnerByIndex(address owner, uint256 index)
+        public
+        view
+        returns (uint256 tokenId, uint256 eventId)
+    {
         tokenId = tokenOfOwnerByIndex(owner, index);
         eventId = tokenEvent(tokenId);
     }
@@ -74,14 +82,23 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @return string representing the token uri
      */
     function tokenURI(uint256 tokenId) external view returns (string memory) {
-        uint eventId = _tokenEvent[tokenId];
-        return _strConcat(_baseURI, _uint2str(eventId), "/", _uint2str(tokenId), "");
+        uint256 eventId = _tokenEvent[tokenId];
+        return
+            _strConcat(
+                _baseURI,
+                _uint2str(eventId),
+                "/",
+                _uint2str(tokenId),
+                ""
+            );
     }
 
     function setBaseURI(string memory baseURI) public onlyAdmin whenNotPaused {
         _baseURI = baseURI;
     }
 
+    // this function is different from Poap.sol
+    // why would you want to change the ID?
     function setLastId(uint256 newLastId) public onlyAdmin whenNotPaused {
         require(lastId < newLastId);
         lastId = newLastId;
@@ -95,7 +112,11 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
         super.setApprovalForAll(to, approved);
     }
 
-    function transferFrom(address from, address to, uint256 tokenId) public whenNotPaused {
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public whenNotPaused {
         super.transferFrom(from, to, tokenId);
     }
 
@@ -106,7 +127,10 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @return A boolean that indicates if the operation was successful.
      */
     function mintToken(uint256 eventId, address to)
-    public whenNotPaused onlyEventMinter(eventId) returns (bool)
+        public
+        whenNotPaused
+        onlyEventMinter(eventId)
+        returns (bool)
     {
         lastId += 1;
         return _mintToken(eventId, lastId, to);
@@ -119,7 +143,10 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @return A boolean that indicates if the operation was successful.
      */
     function mintEventToManyUsers(uint256 eventId, address[] memory to)
-    public whenNotPaused onlyEventMinter(eventId) returns (bool)
+        public
+        whenNotPaused
+        onlyEventMinter(eventId)
+        returns (bool)
     {
         for (uint256 i = 0; i < to.length; ++i) {
             _mintToken(eventId, lastId + 1 + i, to[i]);
@@ -135,7 +162,10 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @return A boolean that indicates if the operation was successful.
      */
     function mintUserToManyEvents(uint256[] memory eventIds, address to)
-    public whenNotPaused onlyAdmin() returns (bool)
+        public
+        whenNotPaused
+        onlyAdmin
+        returns (bool)
     {
         for (uint256 i = 0; i < eventIds.length; ++i) {
             _mintToken(eventIds[i], lastId + 1 + i, to);
@@ -153,9 +183,12 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
         _burn(tokenId);
     }
 
-    function initialize(string memory __name, string memory __symbol, string memory __baseURI, address[] memory admins)
-    public initializer
-    {
+    function initialize(
+        string memory __name,
+        string memory __symbol,
+        string memory __baseURI,
+        address[] memory admins
+    ) public initializer {
         ERC721.initialize();
         ERC721Enumerable.initialize();
         PoapRoles.initialize(msg.sender);
@@ -194,7 +227,11 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @param to The address that will receive the minted tokens.
      * @return A boolean that indicates if the operation was successful.
      */
-    function _mintToken(uint256 eventId, uint256 tokenId, address to) internal returns (bool) {
+    function _mintToken(
+        uint256 eventId,
+        uint256 tokenId,
+        address to
+    ) internal returns (bool) {
         // TODO Verify that the token receiver ('to') do not have already a token for the event ('eventId')
         _mint(to, tokenId);
         _tokenEvent[tokenId] = eventId;
@@ -206,20 +243,24 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @dev Function to convert uint to string
      * Taken from https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol
      */
-    function _uint2str(uint _i) internal pure returns (string memory _uintAsString) {
+    function _uint2str(uint256 _i)
+        internal
+        pure
+        returns (string memory _uintAsString)
+    {
         if (_i == 0) {
             return "0";
         }
-        uint j = _i;
-        uint len;
+        uint256 j = _i;
+        uint256 len;
         while (j != 0) {
             len++;
             j /= 10;
         }
         bytes memory bstr = new bytes(len);
-        uint k = len - 1;
+        uint256 k = len - 1;
         while (_i != 0) {
-            bstr[k--] = byte(uint8(48 + _i % 10));
+            bstr[k--] = bytes1(uint8(48 + (_i % 10)));
             _i /= 10;
         }
         return string(bstr);
@@ -229,18 +270,24 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
      * @dev Function to concat strings
      * Taken from https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol
      */
-    function _strConcat(string memory _a, string memory _b, string memory _c, string memory _d, string memory _e)
-    internal pure returns (string memory _concatenatedString)
-    {
+    function _strConcat(
+        string memory _a,
+        string memory _b,
+        string memory _c,
+        string memory _d,
+        string memory _e
+    ) internal pure returns (string memory _concatenatedString) {
         bytes memory _ba = bytes(_a);
         bytes memory _bb = bytes(_b);
         bytes memory _bc = bytes(_c);
         bytes memory _bd = bytes(_d);
         bytes memory _be = bytes(_e);
-        string memory abcde = new string(_ba.length + _bb.length + _bc.length + _bd.length + _be.length);
+        string memory abcde = new string(
+            _ba.length + _bb.length + _bc.length + _bd.length + _be.length
+        );
         bytes memory babcde = bytes(abcde);
-        uint k = 0;
-        uint i = 0;
+        uint256 k = 0;
+        uint256 i = 0;
         for (i = 0; i < _ba.length; i++) {
             babcde[k++] = _ba[i];
         }
@@ -258,5 +305,4 @@ contract XPoap is Initializable, ERC721, ERC721Enumerable, PoapRoles, PoapPausab
         }
         return string(babcde);
     }
-
 }
